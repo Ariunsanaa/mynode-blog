@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "npm start": "node app.js"
+    "start": "node app.js"
   },
   "author": "ariunsanaa",
   "license": "ISC",
@@ -16,5 +16,8 @@
     "express-sanitizer": "^1.0.4",
     "method-override": "^2.3.10",
     "mongoose": "^5.0.16"
+  },
+  "engines": {
+    "node": "9.9.0"
   }
 }
