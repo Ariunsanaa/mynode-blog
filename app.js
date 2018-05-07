@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+var methodOverride = require('method-override');
+var expressSanitizer = require('express-sanitizer');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
@@ -8,6 +10,8 @@ mongoose.connect('mongodb://localhost/myblog');
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(expressSanitizer());
+app.use(methodOverride("_method"));
 
 
 // MONGOOSE MODEL CONFIG/
@@ -46,7 +50,22 @@ app.get("/blog", function(req, res){
         }
     });
 });
-
+// ========= Блог Пост Нэмэх ====================
+app.get("/blog/new", function(req, res){
+    res.render("newBlog");
+});
+// =============CREATE ROUTE =============================
+app.post("/blog", function(req, res){
+    // Create Blog
+    req.body.blog.body = req.sanitize(req.body.blog.body);
+    Blog.create(req.body.blog, function(err, newBlog){
+        if(err){
+            res.render("newBlog");
+        }else{
+            res.redirect("/blog");
+        }
+    });
+})
 // ======= SHOW =================
 app.get("/blog/:id", function(req, res){
     Blog.findById(req.params.id, function(err, foundBlog){
@@ -58,8 +77,36 @@ app.get("/blog/:id", function(req, res){
     });
 });
 
-app.get("/blog/new", function(req, res){
-    res.render("newBlog");
+// ========== EDIT ======================== 
+app.get("/blog/:id/edit", (req, res)=>{
+    Blog.findById(req.params.id, (err, foundBlog)=>{
+        if(err){
+            res.redirect('/blog');
+        }else{
+            res.render("edit", {blog:foundBlog});
+        }
+    })
+})
+// =========== UPDATE ROUTE============================
+app.put("/blog/:id", (req, res)=>{
+    req.body.blog.body = req.sanitize(req.body.blog.body);
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
+        if(err){
+            res.redirect("/blog");
+        }else{
+            res.redirect("/blog/" +  req.params.id);
+        }
+    });
+    });
+// =========== DELETE ROUTE ================================= 
+app.delete("/blog/:id", function(req, res){
+    Blog.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            res.redirect("/blog");
+        }else{
+            res.redirect("/blog");
+        }
+    });
 });
 // End of blog routes ==========================================================
 app.get("/portfolio", function(req, res){

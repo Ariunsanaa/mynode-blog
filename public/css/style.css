@@ -34,3 +34,10 @@ body{
 .postBody{
     margin-top: 10px;
 }
+.tovch{
+    float: left;
+}
+#delete{
+    float: left;
+    margin-left: 10px;
+}

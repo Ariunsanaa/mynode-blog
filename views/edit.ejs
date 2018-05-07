@@ -58,26 +58,30 @@
     <div class="row" id="blog-input">
         
         <div class="col-md-8 offset-md-2">
-                <h2>Шинэ нийтлэл оруулах</h2>
+                <h2>Нийтлэл засварлах</h2>
     
-    <form action="/blog" method="POST">
+    <form action="/blog/<%= blog._id %>?_method=PUT" method="POST">
         <div class="form-group">
                 <label for="blog[title]">Гарчиг</label>
-                <input type="text" id="blog[title]" class="form-control" name="blog[title]" >
+                <input type="text" id="blog[title]" class="form-control" name="blog[title]" value="<%= blog.title %>" >
         </div>
         
         <div class="form-group">
                 <label for="blog[image]">Зургийн линк</label>
-                <input type="text" id="blog[image]" class="form-control" name="blog[image]" >
+                <input type="text" id="blog[image]" class="form-control" name="blog[image]" 
+                value="<%= blog.image %>" >
         </div>
 
         <div class="form-group" >
                 <label for="blog[body]">Нийтлэлийн агуулга</label>
-                <textarea type="text" id="blog[body]" class="form-control " name="blog[body]" ></textarea>
+            <textarea type="text" id="blog[body]" class="form-control " 
+                name="blog[body]"  > 
+                <%= blog.body %>
+            </textarea>
         </div>
 
         <input type="submit" value="Оруулах" class="btn btn-primary">
-
+        <button class="btn btn-primary">Болих </button>
     </form>
 </div><!-- END of COLUMN -->
 </div><!-- End of ROW -->

@@ -40,6 +40,20 @@
 
 <!-- =========== Start of Content ============= -->
 <div class="container">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-8">
+          <div class="tovch">
+              <a href="/blog/<%= blog._id %>/edit" ><button class="btn btn-primary">Засварлах</button></a>
+          </div>  
+          
+          <!-- ======== УСТГАХ =========== -->
+          <form id="delete" action="/blog/<%= blog._id %>?_method=DELETE" method="POST">
+              <button class="btn btn-primary ">Устгах</button>
+          </form>
+            
+          </div>
+    </div>
+
   <div class="row" style="margin-top: 20px;">
     <div class="col-md-8">
 
