@@ -6,7 +6,15 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 //APP CONFIG
-mongoose.connect('mongodb://localhost/myblog');
+// Original Database
+// mongoose.connect('mongodb://localhost/myblog');
+
+// Mongo Database 
+mongoose.connect('mongodb://aagii:skynet@ds117200.mlab.com:17200/blog2018');
+// mongodb://aagii:skynet@ds117200.mlab.com:17200/blog2018
+// user: aagii
+// password: skynet
+
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
