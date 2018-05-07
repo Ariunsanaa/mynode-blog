@@ -1,0 +1,36 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.hero{
+    background: url("../image/photo1.jpg") no-repeat 0 -150px fixed;
+    height: 425px;
+}
+.myTitle{
+    color: white;
+    font-size: 1.8em;
+    font-style: italic;
+    padding: 10px;
+    padding-top: 90px;
+    text-align: left;
+}
+
+/* =============== BODY ================= */
+.bodyTitle{
+    text-align: center;
+                    margin-top: 10px;
+                    margin-bottom: 20px;
+}
+.photo{
+    width: 100%;
+}
+.bodyDiv{
+    margin-top: 20px;
+}
+/* ================ New Blog Post ==================== */
+#blog-input{
+    margin-top: 30px;
+}
+.postBody{
+    margin-top: 10px;
+}
